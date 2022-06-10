@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'react-bootstrap/Image';
-import { ColCenter, RowCenter } from '../../../components/utils/custom_tag';
+import { ColCenter, RowCenter, Row } from '../../../components/utils/custom_tag';
 import useScreenSize from '../../../kits/use-screen-size';
 
 const Picture = ({ item }) => {
@@ -23,15 +23,19 @@ const Picture = ({ item }) => {
             height: !screenSize.isXSmall || !screenSize.isSmall ? 300 : 450,
             overflow: 'hidden',
         },
-        slide: {
+        slideContainer: {
+            width: '100%',
+            position: 'relative',
+            heigh: 100,
+            minHeight: 100,
             overflowX: 'scroll',
+        }
+        ,
+        slide: {
+            position: 'absolute',
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '98%',
             heigh: 100,
-            paddingLeft: 50,
             picture: {
                 width: 100, height: 100,
                 marginLeft: '1.5rem',
@@ -50,21 +54,25 @@ const Picture = ({ item }) => {
                 <Image src={item.picture[pictureIndex]} alt={'product'} rounded style={styles.bigPicture.picture} />
             </RowCenter>
 
-            <RowCenter style={styles.slide}>
-                {
-                    item.picture.length > 0 && item.picture.map((pic, index) => {
-                        return (
-                            <Image src={pic} alt={`product${index}`} key={index} rounded style={{
-                                ...styles.slide.picture, ...{
-                                    border: index === pictureIndex ? "2px solid green" : "none"
-                                }
-                            }}
-                                onClick={() => onChangePicture(index)}
-                            />
-                        )
-                    })
-                }
-            </RowCenter>
+            <Row style={styles.slideContainer} >
+                <Row style={styles.slide}>
+                    {
+                        item.picture.length > 0 && item.picture.map((pic, index) => {
+                            return (
+                                <Image src={pic} alt={`product${index}`} key={index} rounded style={{
+                                    ...styles.slide.picture, ...{
+                                        border: index === pictureIndex ? "2px solid green" : "none"
+                                    }
+                                }}
+                                    onClick={() => onChangePicture(index)}
+                                />
+                            )
+                        })
+                    }
+                </Row>
+
+            </Row>
+
 
         </ColCenter>
     )
