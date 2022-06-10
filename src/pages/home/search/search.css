@@ -1,0 +1,46 @@
+.search-container {
+  width: 100%;
+  height: fit-content;
+  padding: 70px 0rem 0.5rem 0rem;
+}
+
+.search-container > .input-group {
+  width: 90%;
+}
+
+.search-container > .input-group > input {
+  outline: none;
+  padding-left: 2rem;
+}
+
+.search-container > .input-group > .icon {
+  position: absolute;
+  left: 0.5rem;
+  font-size: 1rem;
+  color: grey;
+}
+.search-container > .input-group > .icon-close {
+  position: absolute;
+  right: 0.5rem;
+  font-size: 1.7rem;
+  color: grey;
+}
+
+.search-list {
+  padding: 0.8rem;
+  overflow-y: scroll;
+  width: 95%;
+  /* height: fit-content; */
+  min-height: 200px;
+  /* height: auto; */
+  height: 300px;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  border: "1px solid grey";
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.search-item {
+  margin-bottom: 1.2rem;
+  width: 100%;
+  font-size: 0.8rem;
+}

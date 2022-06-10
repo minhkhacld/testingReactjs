@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useLocation } from "react-router-dom";
 import './App.css';
+import Content from './content';
+import { AuthProvider, useAuth } from "./contexts/auth";
+import Login from './pages/login/login';
 
-function App() {
+const CheckAuthentication = () => {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <Login />;
+  }
+
+  return <Content user={user} />;
+};
+
+const App = () => {
+
+  const { pathname } = useLocation();
+  // console.log(user);
+
+  React.useEffect(() => {
+    // window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <AuthProvider>
+      <CheckAuthentication />
+    </AuthProvider>
+  )
+
+
+};
 
 export default App;
